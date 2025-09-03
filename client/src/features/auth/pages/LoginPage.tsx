@@ -1,7 +1,9 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './LoginPage.module.css';
+import { loginSchema } from '../validation/loginSchema';
 
-type LoginForm = {
+type LoginFormData = {
   login: string;
   password: string;
 };
@@ -11,9 +13,9 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginForm>();
+  } = useForm<LoginFormData>({ resolver: yupResolver(loginSchema) });
 
-  const onSubmit: SubmitHandler<LoginForm> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginFormData> = (data) => console.log(data);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -26,16 +28,17 @@ const LoginPage = () => {
             {...register('login', { required: true })}
             placeholder="Enter login..."
           />
-          {errors.login && <span className={styles.error}>This field is required</span>}
+          {errors.login && <span className={styles.error}>{errors.login.message}</span>}
         </label>
         <label className={styles.label}>
           <p>Password:</p>
           <input
+            type="password"
             className={styles.formControl}
             {...register('password', { required: true })}
             placeholder="Enter password..."
           />
-          {errors.password && <span className={styles.error}>This field is required</span>}
+          {errors.password && <span className={styles.error}>{errors.password.message}</span>}
         </label>
         <input className={styles.submitBtn} type="submit" value="Login" />
       </div>
