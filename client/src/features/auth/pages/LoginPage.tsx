@@ -1,7 +1,8 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import styles from './LoginPage.module.css';
+import styles from './LoginPage.module.scss';
 import { loginSchema } from '../validation/loginSchema';
+import FormInput from '../components/FormInput/FormInput';
 
 type LoginFormData = {
   login: string;
@@ -21,25 +22,20 @@ const LoginPage = () => {
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.container}>
         <h1 className={styles.greeting}>Hi!</h1>
-        <label className={styles.label}>
-          <p>Login:</p>
-          <input
-            className={styles.formControl}
-            {...register('login', { required: true })}
-            placeholder="Enter login..."
-          />
-          {errors.login && <span className={styles.error}>{errors.login.message}</span>}
-        </label>
-        <label className={styles.label}>
-          <p>Password:</p>
-          <input
-            type="password"
-            className={styles.formControl}
-            {...register('password', { required: true })}
-            placeholder="Enter password..."
-          />
-          {errors.password && <span className={styles.error}>{errors.password.message}</span>}
-        </label>
+        <FormInput
+          label="Login:"
+          type="text"
+          error={errors.login?.message}
+          {...register('login', { required: true })}
+          placeholder="Enter login..."
+        />
+        <FormInput
+          label="Password:"
+          type="password"
+          error={errors.password?.message}
+          {...register('password', { required: true })}
+          placeholder="Enter password..."
+        />
         <input className={styles.submitBtn} type="submit" value="Login" />
       </div>
     </form>

@@ -1,0 +1,36 @@
+.label {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+}
+
+.error {
+  font-size: 0.6rem;
+  margin-top: 0.25rem;
+  color: red;
+  padding-left: 0.5rem;
+}
+
+.label p {
+  margin-bottom: 0.5rem;
+  color: #30d46f;
+  font-size: 0.8rem;
+}
+
+.formControl {
+  border: 2px solid transparent;
+  height: 2.5em;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  border-radius: 6px;
+  transition: all 0.5s;
+}
+
+.formControl:hover,
+.formControl:focus {
+  border: 2px solid #afe6c3;
+  background-color: white;
+}
