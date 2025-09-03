@@ -8,12 +8,13 @@ type FormButtonProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export const FormButton = forwardRef<HTMLInputElement, FormButtonProps>(
-  ({ value, handleClick, ...props }) => (
+  ({ value, handleClick, ...props }, ref) => (
     <input
       {...props}
       className={styles.formButton}
       type={props.type}
       value={value}
+      ref={ref}
       onClick={handleClick}
     />
   ),

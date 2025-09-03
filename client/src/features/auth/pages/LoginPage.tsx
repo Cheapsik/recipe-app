@@ -2,8 +2,8 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './LoginPage.module.scss';
 import { loginSchema } from '../validation/loginSchema';
-import FormInput from '../components/FormInput/FormInput';
-import FormButton from '../components/FormButton/FormButton';
+import FormInput from '../../../shared/components/FormInput/FormInput';
+import FormButton from '../../../shared/components/FormButton/FormButton';
 
 type LoginFormData = {
   login: string;
