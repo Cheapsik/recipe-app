@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './LoginPage.module.scss';
 import { loginSchema } from '../validation/loginSchema';
 import FormInput from '../components/FormInput/FormInput';
+import FormButton from '../components/FormButton/FormButton';
 
 type LoginFormData = {
   login: string;
@@ -36,7 +37,7 @@ const LoginPage = () => {
           {...register('password', { required: true })}
           placeholder="Enter password..."
         />
-        <input className={styles.submitBtn} type="submit" value="Login" />
+        <FormButton type="submit" value="Login" />
       </div>
     </form>
   );
