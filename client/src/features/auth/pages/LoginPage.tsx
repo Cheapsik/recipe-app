@@ -4,11 +4,8 @@ import styles from './LoginPage.module.scss';
 import { loginSchema } from '../validation/loginSchema';
 import FormInput from '../../../shared/components/FormInput/FormInput';
 import FormButton from '../../../shared/components/FormButton/FormButton';
-
-type LoginFormData = {
-  login: string;
-  password: string;
-};
+import { loginUser } from '../hooks/useLogin';
+import type { LoginFormData } from '../types/types';
 
 const LoginPage = () => {
   const {
@@ -17,7 +14,11 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm<LoginFormData>({ resolver: yupResolver(loginSchema) });
 
-  const onSubmit: SubmitHandler<LoginFormData> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
+    const token = await loginUser(data);
+
+    console.log(token);
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
