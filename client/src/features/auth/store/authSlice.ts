@@ -1,9 +1,9 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { loginUser } from './authThunks';
 
-type User = {
-  id: string;
-  email: string;
-  role: 'user' | 'admin';
+export type User = {
+  username: string;
+  role: 'User' | 'Admin';
   token: string;
 };
 
@@ -19,14 +19,18 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginSuccess(state, action: PayloadAction<User>) {
-      state.user = action.payload;
-    },
     logout(state) {
       state.user = null;
+      localStorage.removeItem('token');
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      localStorage.setItem('token', action.payload.token);
+    });
   },
 });
 
-export const { loginSuccess, logout } = authSlice.actions;
+export const { logout } = authSlice.actions;
 export const authReducer = authSlice.reducer;

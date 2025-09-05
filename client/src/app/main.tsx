@@ -3,11 +3,13 @@ import { createRoot } from 'react-dom/client';
 import './main.scss';
 import RecipeApp from './RecipeApp.tsx';
 import { AppProvider } from './providers.tsx';
+import { ToastContainer } from 'react-toastify';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AppProvider>
       <RecipeApp />
+      <ToastContainer position="bottom-right" />
     </AppProvider>
   </StrictMode>,
 );

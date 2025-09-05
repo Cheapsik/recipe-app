@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
 }
 
 .container {
@@ -20,27 +19,6 @@
   -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
   box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-}
-
-.submitBtn {
-  cursor: pointer;
-  border: 0;
-  border-radius: 4px;
-  font-weight: 600;
-  margin: 3rem 10px 0 10px;
-  width: 200px;
-  padding: 10px 0;
-  box-shadow: 0 0 20px #afe6c3;
-  transition: 0.4s;
-  color: #afe6c3;
-  background-color: rgba(255, 255, 255, 1);
-  border: 1px solid #afe6c3;
-}
-
-.submitBtn:hover {
-  color: white;
-  box-shadow: 0 0 20px #30d46f;
-  background-color: #30d46f;
 }
 
 .greeting {

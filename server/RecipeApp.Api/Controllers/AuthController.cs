@@ -12,18 +12,16 @@ using System.Text;
 public class AuthController : ControllerBase
 {
     private readonly UserManager<User> _userManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IConfiguration _configuration;
 
     public AuthController(
         UserManager<User> userManager,
-        RoleManager<IdentityRole> roleManager,
         IConfiguration configuration)
     {
         _userManager = userManager;
-        _roleManager = roleManager;
         _configuration = configuration;
     }
+
     [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto data)
