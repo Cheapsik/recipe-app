@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUser } from './authThunks';
+import { jwtDecode } from 'jwt-decode';
 
 export type User = {
   username: string;
@@ -11,8 +12,16 @@ type AuthState = {
   user: User | null;
 };
 
-const initialState: AuthState = {
-  user: null,
+const initialState = (): AuthState => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const user = jwtDecode(token) as User;
+    return { user };
+  }
+
+  return {
+    user: null,
+  };
 };
 
 const authSlice = createSlice({

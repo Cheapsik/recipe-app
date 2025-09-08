@@ -9,7 +9,14 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AppProvider>
       <RecipeApp />
-      <ToastContainer position="bottom-right" />
+      <ToastContainer
+        position="bottom-right"
+        pauseOnHover={false}
+        hideProgressBar={true}
+        stacked={true}
+        autoClose={3000}
+        limit={5}
+      />
     </AppProvider>
   </StrictMode>,
 );

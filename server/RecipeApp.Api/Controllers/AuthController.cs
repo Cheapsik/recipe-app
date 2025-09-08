@@ -28,7 +28,8 @@ public class AuthController : ControllerBase
     {
         var user = await _userManager.FindByNameAsync(data.UserName);
 
-        if (user == null) return Unauthorized("Invalid credentials");
+        if (user == null)
+            return Unauthorized("Invalid credentials");
 
         if (!await _userManager.CheckPasswordAsync(user, data.Password))
             return Unauthorized("Invalid credentials");
@@ -41,10 +42,11 @@ public class AuthController : ControllerBase
         return Ok(new AuthResponseDto
         {
             Token = token,
-            Username = data.UserName,
-            Role = role,
+            Username = user.UserName!,
+            Role = role
         });
     }
+
 
     private string GenerateJwtToken(User user, string role)
     {
@@ -53,9 +55,9 @@ public class AuthController : ControllerBase
 
         var claims = new List<Claim>
         {
-            new(ClaimTypes.NameIdentifier, user.Id),
-            new(ClaimTypes.Name, user.UserName),
-            new(ClaimTypes.Role, role)
+            new Claim("sub", user.Id),
+            new Claim("username", user.UserName!),
+            new Claim("role", role)
         };
 
         var token = new JwtSecurityToken(
